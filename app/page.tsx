@@ -1,25 +1,26 @@
 import * as React from 'react';
 import { DataTable } from '@/components/ui/data-table';
 import columns from '@/components/columns/players';
-import { getPlayers, getTeams } from '@/utils/read';
-import * as Label from '@/components/ui/label';
-import * as Select from '@/components/ui/select';
-import FilterSelect from '@/components/filter-select';
+import { getPlayers } from '@/utils/read';
+// import * as Label from '@/components/ui/label';
+// import * as Select from '@/components/ui/select';
+// import FilterSelect from '@/components/filter-select';
 
 export default async function Page() {
 	const players = await getPlayers();
-	const teams = await getTeams();
+	// const teams = await getTeams();
 
 	return (
 		<main className='h-full space-y-3'>
 			<h1 className='text-title-h5 font-semibold'>All Players</h1>
 
-			<div className='flex gap-6 w-full'>
-				<DataTable
-					columns={columns}
-					data={players}
-				/>
+			<DataTable
+				columns={columns}
+				data={players}
+			/>
 
+			{/* <div className='flex gap-6 w-full'>
+				
 				<aside className='w-1/6 space-y-3'>
 					<h4 className='font-semibold'>Filters</h4>
 
@@ -58,7 +59,7 @@ export default async function Page() {
 						</Select.Root>
 					</div>
 				</aside>
-			</div>
+			</div> */}
 		</main>
 	);
 }

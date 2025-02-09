@@ -7,6 +7,7 @@ import * as Button from '@/components/ui/button';
 import * as StatusBadge from '@/components/ui/status-badge';
 import { getSortingIcon } from '@/utils/icon';
 import * as Badge from '@/components/ui/badge';
+import * as Select from '@/components/ui/select';
 import PlayerSurveyForm from '../forms/player-survey';
 
 export type Team = {
@@ -20,8 +21,8 @@ export type Player = {
 	position: string;
 	photoUrl: string;
 	surveryValues: {
-		contributionTowardsTeamCulture: number;
-		onFieldPerformance: number;
+		culture: number;
+		performance: number;
 	};
 	team: Team;
 	status: {
@@ -81,11 +82,11 @@ const columns: ColumnDef<Player>[] = [
 		),
 	},
 	{
-		id: 'rating',
-		accessorKey: 'rating',
+		id: 'surveryValues',
+		accessorKey: 'surveryValues.culture',
 		header: ({ column }) => (
 			<div className='flex items-center gap-0.5'>
-				Rating
+				Culture Rating
 				<button
 					type='button'
 					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
@@ -96,22 +97,137 @@ const columns: ColumnDef<Player>[] = [
 		),
 		enableSorting: true,
 		cell: ({ row }) => {
-			const v = row.original.surveryValues.contributionTowardsTeamCulture;
+			const [value, setValue] = React.useState(row.original.surveryValues.performance);
+			const v = String(value);
 			const color = v > 3 && v < 5 ? 'yellow' : v < 3 ? 'red' : 'green';
+
+			const helperText = {
+				'1': 'Culture Destroyer',
+				'2': 'Culture Disruptor',
+				'3': 'Culture Drag',
+				'4': 'Cultrue Stabilizer',
+				'5': 'Culture Enhancer',
+				'6': 'Culture Champion',
+			};
+
 			return (
-				<span className='text-label-sm text-text-strong-950'>
-					<Badge.Root
-						variant='light'
-						color={color}
-						size='medium'
+				<Select.Root
+					onValueChange={(value) => {
+						setValue(Number(value));
+					}}
+				>
+					<Select.Trigger
+						id='team'
+						asChild
 					>
-						{v}
-					</Badge.Root>
-				</span>
+						{/* <Select.Value
+							placeholder='Select a team...'
+							asChild
+						>
+						</Select.Value> */}
+						<span className='text-label-sm text-text-strong-950'>
+							<Badge.Root
+								variant='light'
+								color={color}
+								size='medium'
+							>
+								{v} - {helperText[v]}
+							</Badge.Root>
+						</span>
+					</Select.Trigger>
+
+					<Select.Content>
+						<Select.Item value={'1'}>1 - {helperText['1']}</Select.Item>
+						<Select.Item value={'2'}>2 - {helperText['2']}</Select.Item>
+						<Select.Item value={'3'}>3 - {helperText['3']}</Select.Item>
+						<Select.Item value={'4'}>4 - {helperText['4']}</Select.Item>
+						<Select.Item value={'5'}>5 - {helperText['5']}</Select.Item>
+						<Select.Item value={'6'}>6 - {helperText['6']}</Select.Item>
+					</Select.Content>
+				</Select.Root>
+				// <span className='text-label-sm text-text-strong-950'>
+				// 	<Badge.Root
+				// 		variant='light'
+				// 		color={color}
+				// 		size='medium'
+				// 	>
+				// 		{v}
+				// 	</Badge.Root>
+				// </span>
 			);
 		},
 	},
+	{
+		id: 'surveryValues',
+		accessorKey: 'surveryValues.performance',
+		header: ({ column }) => (
+			<div className='flex items-center gap-0.5'>
+				Performance Rating
+				<button
+					type='button'
+					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+				>
+					{getSortingIcon(column.getIsSorted())}
+				</button>
+			</div>
+		),
+		enableSorting: true,
+		cell: ({ row }) => {
+			const [value, setValue] = React.useState(row.original.surveryValues.performance);
+			// const [first, setfirst] = React.useState(second)
+			let v = String(value);
+			const color = v > 3 && v < 5 ? 'yellow' : v < 3 ? 'red' : 'green';
 
+			const helperText = {
+				'1': 'Very Bad Performer',
+				'2': 'Poor Performer',
+				'3': 'Below Average Performer',
+				'4': 'Above Average Performer',
+				'5': 'Good Performer',
+				'6': 'Elite Performer',
+			};
+
+			return (
+				<Select.Root
+					// onV
+					onValueChange={(value) => {
+						setValue(Number(value));
+					}}
+				>
+					<Select.Trigger
+						id='team'
+						asChild
+					>
+						{/* <Select.Value
+							placeholder='Select a team...'
+							asChild
+						>
+						</Select.Value> */}
+						<span className='text-label-sm text-text-strong-950'>
+							<Badge.Root
+								variant='light'
+								color={color}
+								size='medium'
+							>
+								{v} - {helperText[v]}
+							</Badge.Root>
+						</span>
+					</Select.Trigger>
+
+					<Select.Content>
+						<Select.Content>
+							<Select.Item value={'1'}>1 - {helperText['1']}</Select.Item>
+							<Select.Item value={'2'}>2 - {helperText['2']}</Select.Item>
+							<Select.Item value={'3'}>3 - {helperText['3']}</Select.Item>
+							<Select.Item value={'4'}>4 - {helperText['4']}</Select.Item>
+							<Select.Item value={'5'}>5 - {helperText['5']}</Select.Item>
+							<Select.Item value={'6'}>6 - {helperText['6']}</Select.Item>
+						</Select.Content>
+					</Select.Content>
+				</Select.Root>
+			);
+		},
+	},
 	// {
 	// 	id: 'position',
 	// 	accessorKey: 'position',
@@ -172,27 +288,27 @@ const columns: ColumnDef<Player>[] = [
 	// 		</div>
 	// 	),
 	// },
-	{
-		id: 'status',
-		accessorKey: 'status.label',
-		header: ({ column }) => (
-			<div className='flex items-center gap-0.5'>
-				Status
-				<button
-					type='button'
-					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-				>
-					{getSortingIcon(column.getIsSorted())}
-				</button>
-			</div>
-		),
-		cell: ({ row }) => (
-			<StatusBadge.Root status={row.original.status.variant}>
-				<StatusBadge.Icon as={RiCheckboxCircleFill} />
-				{row.original.status.label}
-			</StatusBadge.Root>
-		),
-	},
+	// {
+	// 	id: 'status',
+	// 	accessorKey: 'status.label',
+	// 	header: ({ column }) => (
+	// 		<div className='flex items-center gap-0.5'>
+	// 			Status
+	// 			<button
+	// 				type='button'
+	// 				onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+	// 			>
+	// 				{getSortingIcon(column.getIsSorted())}
+	// 			</button>
+	// 		</div>
+	// 	),
+	// 	cell: ({ row }) => (
+	// 		<StatusBadge.Root status={row.original.status.variant}>
+	// 			<StatusBadge.Icon as={RiCheckboxCircleFill} />
+	// 			{row.original.status.label}
+	// 		</StatusBadge.Root>
+	// 	),
+	// },
 	{
 		id: 'actions',
 		enableHiding: false,

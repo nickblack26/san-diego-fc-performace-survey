@@ -11,7 +11,9 @@ const teams: Team[] = [
 	},
 	{
 		name: 'Colorado Rapids',
-		image: ['https://images.mlssoccer.com/image/upload/t_q-best/v1614970746/assets/logos/436-colorado-logo_yifx69.png'],
+		image: [
+			'https://images.mlssoccer.com/image/upload/t_q-best/v1614970746/assets/logos/436-colorado-logo_yifx69.png',
+		],
 	},
 	{
 		name: 'San Diego FC',
@@ -44,8 +46,8 @@ const data: Player[] = [
 		photoUrl:
 			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls-mia/nrvfhks8mv8yicve8lru.png',
 		surveryValues: {
-			contributionTowardsTeamCulture: 4,
-			onFieldPerformance: 11,
+			culture: 1,
+			performance: 4,
 		},
 		position: 'Goalkeeper',
 		team: teams[0],
@@ -60,8 +62,8 @@ const data: Player[] = [
 		photoUrl:
 			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/prd-league/cnmcqtkah3yyrib2ixxf.png',
 		surveryValues: {
-			contributionTowardsTeamCulture: 9,
-			onFieldPerformance: 11,
+			culture: 2,
+			performance: 5,
 		},
 		team: teams[teams.length - 1],
 		position: 'Goalkeeper',
@@ -76,8 +78,8 @@ const data: Player[] = [
 		photoUrl:
 			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls/kx2x0zzi0avkhuvma4dw.png',
 		surveryValues: {
-			contributionTowardsTeamCulture: 8,
-			onFieldPerformance: 11,
+			culture: 3,
+			performance: 6,
 		},
 		position: 'Goalkeeper',
 		team: teams[teams.length - 2],
@@ -92,8 +94,8 @@ const data: Player[] = [
 		photoUrl:
 			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls/udh0vvgplxjwenyyc44k.png',
 		surveryValues: {
-			contributionTowardsTeamCulture: 7,
-			onFieldPerformance: 11,
+			culture: 4,
+			performance: 5,
 		},
 		team: teams[teams.length - 3],
 		position: 'Defender',
@@ -107,8 +109,8 @@ const data: Player[] = [
 		name: 'Paddy McNair',
 		photoUrl: 'https://www.mlssoccer.com/assets/images/Fallback-Headshot.png',
 		surveryValues: {
-			contributionTowardsTeamCulture: 1,
-			onFieldPerformance: 11,
+			culture: 5,
+			performance: 4,
 		},
 		team: teams[teams.length - 4],
 		position: 'Defender',
@@ -122,8 +124,8 @@ const data: Player[] = [
 		name: 'Ian Pilcher',
 		photoUrl: 'https://www.mlssoccer.com/assets/images/Fallback-Headshot.png',
 		surveryValues: {
-			contributionTowardsTeamCulture: 5,
-			onFieldPerformance: 11,
+			culture: 6,
+			performance: 3,
 		},
 		team: teams[teams.length - 5],
 		position: 'Defender',
@@ -138,8 +140,8 @@ const data: Player[] = [
 		photoUrl:
 			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls/bivn1gbui0rkhlebp5ek.png',
 		surveryValues: {
-			contributionTowardsTeamCulture: 2,
-			onFieldPerformance: 11,
+			culture: 5,
+			performance: 2,
 		},
 		team: teams[teams.length - 6],
 		position: 'Midfielder',
@@ -154,8 +156,8 @@ const data: Player[] = [
 		photoUrl:
 			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls/rkqefxvqdcvhehdkr7gm.png',
 		surveryValues: {
-			contributionTowardsTeamCulture: 4,
-			onFieldPerformance: 11,
+			culture: 4,
+			performance: 1,
 		},
 		team: teams[1],
 		position: 'Defender',
