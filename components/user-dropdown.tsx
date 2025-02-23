@@ -15,7 +15,6 @@ import * as Badge from '@/components/ui/badge';
 import * as Divider from '@/components/ui/divider';
 import * as Dropdown from '@/components/ui/dropdown';
 import * as Switch from '@/components/ui/switch';
-import { useTheme } from 'next-themes';
 
 function CustomVerifiedIconSVG(props: React.SVGProps<SVGSVGElement>) {
 	return (
@@ -42,8 +41,6 @@ function CustomVerifiedIconSVG(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export function UserDropdown() {
-	const { theme, setTheme } = useTheme();
-
 	return (
 		<Dropdown.Root>
 			<Dropdown.Trigger className='ml-auto'>
@@ -63,8 +60,12 @@ export function UserDropdown() {
 						</Avatar.Indicator>
 					</Avatar.Root>
 					<div className='flex-1'>
-						<div className='text-label-sm text-text-strong-950'>Wei Chen</div>
-						<div className='mt-1 text-paragraph-xs text-text-sub-600'>wei@alignui.com</div>
+						<div className='text-label-sm text-text-strong-950'>
+							Wei Chen
+						</div>
+						<div className='mt-1 text-paragraph-xs text-text-sub-600'>
+							wei@alignui.com
+						</div>
 					</div>
 					<Badge.Root
 						variant='light'
@@ -117,7 +118,9 @@ export function UserDropdown() {
 						Logout
 					</Dropdown.Item>
 				</Dropdown.Group>
-				<div className='p-2 text-paragraph-sm text-text-soft-400'>v.1.5.69 · Terms & Conditions</div>
+				<div className='p-2 text-paragraph-sm text-text-soft-400'>
+					v.1.5.69 · Terms & Conditions
+				</div>
 			</Dropdown.Content>
 		</Dropdown.Root>
 	);

@@ -1,65 +1,91 @@
 import * as React from 'react';
+import { getPlayers } from '@/utils/read';
+import * as Avatar from '@/components/ui/avatar';
+import SuveryDropdown from './survery-dropdown';
+import { Label } from '@/components/ui/dropdown';
 import { DataTable } from '@/components/ui/data-table';
 import columns from '@/components/columns/players';
-import { getPlayers } from '@/utils/read';
-// import * as Label from '@/components/ui/label';
-// import * as Select from '@/components/ui/select';
-// import FilterSelect from '@/components/filter-select';
+import { cultureHelperText, performanceHelperText } from '@/utils/text';
+import Image from 'next/image';
 
 export default async function Page() {
 	const players = await getPlayers();
-	// const teams = await getTeams();
 
 	return (
-		<main className='h-full space-y-3'>
-			<h1 className='text-title-h5 font-semibold'>All Players</h1>
+		<main>
+			<header className='px-6 py-3 border-b flex items-center shrink gap-3'>
+				<Image
+					src={
+						'https://images.mlssoccer.com/image/upload/t_q-best/v1736287039/assets/sdn/logos/sd_logo_pri_fc_rgb_480x480__1__720_1_jlm4tx.png'
+					}
+					alt='San Diego FC Logo'
+					width={50}
+					height={50}
+					className='object-contain'
+				/>
 
-			<DataTable
-				columns={columns}
-				data={players}
-			/>
+				<h1 className='text-title-h5 font-bold sm:text-title-h4'>
+					Culture and Performance Weekly Survey
+				</h1>
+			</header>
 
-			{/* <div className='flex gap-6 w-full'>
-				
-				<aside className='w-1/6 space-y-3'>
-					<h4 className='font-semibold'>Filters</h4>
+			<h1 className='text-title-h5 font-semibold px-6 pt-6'>
+				All Players
+			</h1>
 
-					<div className='flex flex-col gap-1'>
-						<Label.Root htmlFor='team'>Team</Label.Root>
+			<section className='p-6 space-y-6 sm:hidden'>
+				{players.map((player) => (
+					<div
+						key={player.id}
+						className='space-y-3'
+					>
+						<div className='flex items-center gap-3'>
+							<Avatar.Root size='40'>
+								<Avatar.Image src={player.photoUrl} />
+							</Avatar.Root>
 
-						<Select.Root>
-							<Select.Trigger id='team'>
-								<Select.Value placeholder='Select a team...' />
-							</Select.Trigger>
+							<div className='flex flex-col gap-0.5'>
+								<h2 className='text-label-md text-text-strong-950 dark:text-white'>
+									{player.name}
+								</h2>
 
-							<Select.Content>
-								{teams.map((item) => (
-									<FilterSelect
-										key={item.name}
-										item={item}
-									/>
-								))}
-							</Select.Content>
-						</Select.Root>
+								<p className='text-paragraph-xs text-text-sub-600'>
+									{player.position}
+								</p>
+							</div>
+						</div>
+
+						<div className='grid gap-1.5'>
+							<div>
+								<Label>Culture</Label>
+
+								<SuveryDropdown
+									defaultValue={player.surveryValues.culture}
+									helperText={cultureHelperText}
+								/>
+							</div>
+
+							<div>
+								<Label>Performance</Label>
+
+								<SuveryDropdown
+									defaultValue={
+										player.surveryValues.performance
+									}
+									helperText={performanceHelperText}
+								/>
+							</div>
+						</div>
 					</div>
+				))}
+			</section>
 
-					<div className='flex flex-col gap-1'>
-						<Label.Root htmlFor='position'>Position</Label.Root>
-
-						<Select.Root>
-							<Select.Trigger id='position'>
-								<Select.Value placeholder='Select a position...' />
-							</Select.Trigger>
-
-							<Select.Content>
-								<Select.Item value={'Goalkeeper'}>Goalkeeper</Select.Item>
-								<Select.Item value={'Defender'}>Defender</Select.Item>
-								<Select.Item value={'Midfielder'}>Midfielder</Select.Item>
-							</Select.Content>
-						</Select.Root>
-					</div>
-				</aside>
-			</div> */}
+			<section className='space-y-3 hidden sm:block p-6'>
+				<DataTable
+					columns={columns}
+					data={players}
+				/>
+			</section>
 		</main>
 	);
 }

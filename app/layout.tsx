@@ -2,9 +2,6 @@ import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/utils/cn';
-import { ThemeProvider } from 'next-themes';
-import Image from 'next/image';
-import { UserDropdown } from '@/components/user-dropdown';
 
 const inter = FontSans({
 	subsets: ['latin'],
@@ -27,25 +24,7 @@ export default function RootLayout({
 			suppressHydrationWarning
 		>
 			<body className={cn(inter.variable, 'antialiased font-sans')}>
-				<ThemeProvider>
-					<header className='px-6 py-3 border-b flex items-center gap-3'>
-						<Image
-							src={
-								'https://images.mlssoccer.com/image/upload/t_q-best/v1736287039/assets/sdn/logos/sd_logo_pri_fc_rgb_480x480__1__720_1_jlm4tx.png'
-							}
-							alt='San Diego FC Logo'
-							width={50}
-							height={50}
-							className='object-contain'
-						/>
-
-						<h1 className='text-title-h4 font-bold'>Culture and Performance Weekly Survey</h1>
-
-						<UserDropdown />
-					</header>
-
-					<main className='p-6 h-screen'>{children}</main>
-				</ThemeProvider>
+				{children}
 			</body>
 		</html>
 	);

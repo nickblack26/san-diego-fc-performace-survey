@@ -3,11 +3,15 @@ import { Player, Team } from '@/components/columns/players';
 const teams: Team[] = [
 	{
 		name: 'Inter Miami CF',
-		image: ['https://images.mlssoccer.com/image/upload/assets/logos/MIA.svg'],
+		image: [
+			'https://images.mlssoccer.com/image/upload/assets/logos/MIA.svg',
+		],
 	},
 	{
 		name: 'Charlotte FC',
-		image: ['https://images.mlssoccer.com/image/upload/t_q-best/v1634242594/assets/logos/CLT_Logo_480x480v2.png'],
+		image: [
+			'https://images.mlssoccer.com/image/upload/t_q-best/v1634242594/assets/logos/CLT_Logo_480x480v2.png',
+		],
 	},
 	{
 		name: 'Colorado Rapids',
@@ -29,7 +33,9 @@ const teams: Team[] = [
 	},
 	{
 		name: 'San Jose Earthquakes',
-		image: ['https://images.mlssoccer.com/image/upload/t_q-best/v1620997962/assets/logos/SJ-Logo-480px.png'],
+		image: [
+			'https://images.mlssoccer.com/image/upload/t_q-best/v1620997962/assets/logos/SJ-Logo-480px.png',
+		],
 	},
 	{
 		name: 'Crown Legacy Football Club',
@@ -57,7 +63,7 @@ const data: Player[] = [
 		},
 	},
 	{
-		id: '326860c3',
+		id: '326860c4',
 		name: 'Pablo Sisniega',
 		photoUrl:
 			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/prd-league/cnmcqtkah3yyrib2ixxf.png',
@@ -73,7 +79,7 @@ const data: Player[] = [
 		},
 	},
 	{
-		id: '326860c3',
+		id: '326860c5',
 		name: 'Jacob Jackson',
 		photoUrl:
 			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls/kx2x0zzi0avkhuvma4dw.png',
@@ -89,7 +95,7 @@ const data: Player[] = [
 		},
 	},
 	{
-		id: '326860c3',
+		id: '326860c6',
 		name: 'Andres Reyes',
 		photoUrl:
 			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls/udh0vvgplxjwenyyc44k.png',
@@ -105,9 +111,10 @@ const data: Player[] = [
 		},
 	},
 	{
-		id: '326860c3',
+		id: '326860c7',
 		name: 'Paddy McNair',
-		photoUrl: 'https://www.mlssoccer.com/assets/images/Fallback-Headshot.png',
+		photoUrl:
+			'https://www.mlssoccer.com/assets/images/Fallback-Headshot.png',
 		surveryValues: {
 			culture: 5,
 			performance: 4,
@@ -120,9 +127,10 @@ const data: Player[] = [
 		},
 	},
 	{
-		id: '326860c3',
+		id: '326860c8',
 		name: 'Ian Pilcher',
-		photoUrl: 'https://www.mlssoccer.com/assets/images/Fallback-Headshot.png',
+		photoUrl:
+			'https://www.mlssoccer.com/assets/images/Fallback-Headshot.png',
 		surveryValues: {
 			culture: 6,
 			performance: 3,
@@ -135,7 +143,7 @@ const data: Player[] = [
 		},
 	},
 	{
-		id: '326860c3',
+		id: '326860c9',
 		name: 'Jasper Löffelsend',
 		photoUrl:
 			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls/bivn1gbui0rkhlebp5ek.png',
@@ -151,7 +159,7 @@ const data: Player[] = [
 		},
 	},
 	{
-		id: '326860c3',
+		id: '326860c10',
 		name: 'Hamady Diop',
 		photoUrl:
 			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls/rkqefxvqdcvhehdkr7gm.png',

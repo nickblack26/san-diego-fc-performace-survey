@@ -40,13 +40,13 @@ const PlayerSurveyForm = ({ player, children }: Props) => {
 							<Avatar.Image src={player.photoUrl} />
 						</Avatar.Root>
 
-						{/* <div className='flex flex-col gap-0.5'>
-							<span className='text-label-sm text-text-strong-950'>{row.original.name}</span>
-							<span className='text-paragraph-xs text-text-sub-600'>{row.original.position}</span>
-						</div> */}
 						<div className='flex-items-center mr-auto'>
-							<Drawer.Title className='text-label-lg'>{player.name}</Drawer.Title>
-							<p className='text-paragraph-sm text-text-sub-600'>{player.position}</p>
+							<Drawer.Title className='text-label-lg'>
+								{player.name}
+							</Drawer.Title>
+							<p className='text-paragraph-sm text-text-sub-600'>
+								{player.position}
+							</p>
 						</div>
 					</Drawer.Header>
 
@@ -56,7 +56,9 @@ const PlayerSurveyForm = ({ player, children }: Props) => {
 								className='space-y-3'
 								key={property.title}
 							>
-								<h2 className='text-label-lg font-semibold'>{property.title}</h2>
+								<h2 className='text-label-lg font-semibold'>
+									{property.title}
+								</h2>
 
 								<Radio.Group
 									defaultValue='disabled-checked'
@@ -70,10 +72,14 @@ const PlayerSurveyForm = ({ player, children }: Props) => {
 										>
 											<Radio.Item
 												value={value.toString()}
-												id={`${property.formFieldName}-${value.toString()}`}
+												id={`${
+													property.formFieldName
+												}-${value.toString()}`}
 											/>
 											<Label.Root
-												htmlFor={`${property.formFieldName}-${value.toString()}`}
+												htmlFor={`${
+													property.formFieldName
+												}-${value.toString()}`}
 												className='text-text-sub-600 group-has-[[data-state=checked]]/radio:text-text-strong-950 flex-col gap-1'
 											>
 												{value}
@@ -87,15 +93,12 @@ const PlayerSurveyForm = ({ player, children }: Props) => {
 
 					<Drawer.Footer className='border-t'>
 						<Button.Root
-							// variant='primary'
-							// mode='stroke'
 							size='medium'
 							asChild
 						>
 							<button
 								className='w-full'
 								type='submit'
-								// formAction={savePlayerSurvey}
 							>
 								Save
 							</button>
