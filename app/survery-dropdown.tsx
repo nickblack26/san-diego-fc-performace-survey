@@ -3,21 +3,18 @@
 import * as React from 'react';
 import * as Badge from '@/components/ui/badge';
 import * as Select from '@/components/ui/select';
+import { updateSurveryValueRow } from '@/lib/functions';
 
 type Props = {
+	id: number;
+	objectKey: string;
 	defaultValue?: number;
 	helperText: Record<string, string>;
 };
 
-const SuveryDropdown = ({ defaultValue, helperText }: Props) => {
+const SuveryDropdown = ({ defaultValue, helperText, id, objectKey }: Props) => {
 	const [value, setValue] = React.useState(defaultValue);
-	const color = value
-		? value > 3
-			? 'green'
-			: value < 3
-			? 'red'
-			: 'yellow'
-		: 'gray';
+	const color = value ? (value > 3 ? 'green' : value < 3 ? 'red' : 'yellow') : 'gray';
 
 	// const helperText = {
 	// 	'1': 'Culture Destroyer',
@@ -28,11 +25,21 @@ const SuveryDropdown = ({ defaultValue, helperText }: Props) => {
 	// 	'6': 'Culture Champion',
 	// };
 
+	const [optimisticNumber, addOptimisticNumber] = React.useOptimistic<number | undefined, number>(
+		defaultValue,
+		(state, newNumber) => (state = newNumber)
+	);
+
 	return (
 		<Select.Root
 			value={String(value)}
+			defaultValue={String(optimisticNumber)}
 			onValueChange={(value) => {
 				setValue(Number(value));
+				React.startTransition(async () => {
+					addOptimisticNumber(Number(value));
+					await updateSurveryValueRow?.(id, { [objectKey]: Number(value) });
+				});
 			}}
 		>
 			<Select.Trigger

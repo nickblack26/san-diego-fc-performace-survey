@@ -2,35 +2,19 @@
 import * as React from 'react';
 import { RiMore2Line } from '@remixicon/react';
 import { ColumnDef } from '@tanstack/react-table';
-import * as Avatar from '@/components/ui/avatar';
 import * as Button from '@/components/ui/button';
 import { getSortingIcon } from '@/utils/icon';
-import PlayerSurveyForm from '../forms/player-survey';
 import SuveryDropdown from '@/app/survery-dropdown';
 import { cultureHelperText, performanceHelperText } from '@/utils/text';
-
-export type Team = {
-	name: string;
-	image: string[];
-};
+import { SurveyRow } from '@/lib/functions';
+import { players } from '@/utils/read';
 
 export type Player = {
-	id: string;
+	id: number;
 	name: string;
-	position: string;
-	photoUrl: string;
-	surveryValues: {
-		culture: number;
-		performance: number;
-	};
-	team: Team;
-	status: {
-		variant: 'completed' | 'pending' | 'failed' | 'disabled';
-		label: string;
-	};
 };
 
-const columns: ColumnDef<Player>[] = [
+const columns: ColumnDef<SurveyRow>[] = [
 	{
 		id: 'name',
 		accessorKey: 'name',
@@ -39,9 +23,7 @@ const columns: ColumnDef<Player>[] = [
 				Member Name
 				<button
 					type='button'
-					onClick={() =>
-						column.toggleSorting(column.getIsSorted() === 'asc')
-					}
+					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
 				>
 					{getSortingIcon(column.getIsSorted())}
 				</button>
@@ -49,22 +31,11 @@ const columns: ColumnDef<Player>[] = [
 		),
 		enableSorting: true,
 		cell: ({ row }) => (
-			<PlayerSurveyForm player={row.original}>
-				<div className='flex items-center gap-3'>
-					<Avatar.Root size='40'>
-						<Avatar.Image src={row.original.photoUrl} />
-					</Avatar.Root>
-
-					<div className='flex flex-col gap-0.5'>
-						<span className='text-label-sm text-text-strong-950'>
-							{row.original.name}
-						</span>
-						<span className='text-paragraph-xs text-text-sub-600'>
-							{row.original.position}
-						</span>
-					</div>
-				</div>
-			</PlayerSurveyForm>
+			<div className='flex items-center gap-3'>
+				<span className='text-label-sm text-text-strong-950'>
+					{players.find((p) => p.name === row.original.player)?.name}
+				</span>
+			</div>
 		),
 	},
 	{
@@ -75,9 +46,7 @@ const columns: ColumnDef<Player>[] = [
 				Culture Rating
 				<button
 					type='button'
-					onClick={() =>
-						column.toggleSorting(column.getIsSorted() === 'asc')
-					}
+					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
 				>
 					{getSortingIcon(column.getIsSorted())}
 				</button>
@@ -87,7 +56,9 @@ const columns: ColumnDef<Player>[] = [
 		cell: ({ row }) => {
 			return (
 				<SuveryDropdown
-					defaultValue={row.original.surveryValues.culture}
+					id={row.original.id}
+					objectKey='culture_rating'
+					defaultValue={row.original.culture_rating}
 					helperText={cultureHelperText}
 				/>
 			);
@@ -101,9 +72,7 @@ const columns: ColumnDef<Player>[] = [
 				Performance Rating
 				<button
 					type='button'
-					onClick={() =>
-						column.toggleSorting(column.getIsSorted() === 'asc')
-					}
+					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
 				>
 					{getSortingIcon(column.getIsSorted())}
 				</button>
@@ -113,7 +82,9 @@ const columns: ColumnDef<Player>[] = [
 		cell: ({ row }) => {
 			return (
 				<SuveryDropdown
-					defaultValue={row.original.surveryValues.performance}
+					id={row.original.id}
+					objectKey='performance_rating'
+					defaultValue={row.original.performance_rating}
 					helperText={performanceHelperText}
 				/>
 			);

@@ -1,198 +1,113 @@
-import { Player, Team } from '@/components/columns/players';
+import { Player } from '@/components/columns/players';
 
-const teams: Team[] = [
+export const players: Player[] = [
 	{
-		name: 'Inter Miami CF',
-		image: [
-			'https://images.mlssoccer.com/image/upload/assets/logos/MIA.svg',
-		],
+		id: 1,
+		name: 'Pablo Sisniega ',
 	},
 	{
-		name: 'Charlotte FC',
-		image: [
-			'https://images.mlssoccer.com/image/upload/t_q-best/v1634242594/assets/logos/CLT_Logo_480x480v2.png',
-		],
+		id: 2,
+		name: 'CJ dos Santos ',
 	},
 	{
-		name: 'Colorado Rapids',
-		image: [
-			'https://images.mlssoccer.com/image/upload/t_q-best/v1614970746/assets/logos/436-colorado-logo_yifx69.png',
-		],
+		id: 3,
+		name: 'Jacob Jackson ',
 	},
 	{
-		name: 'San Diego FC',
-		image: [
-			'https://images.mlssoccer.com/image/upload/t_q-best/v1736287039/assets/sdn/logos/sd_logo_pri_fc_rgb_480x480__1__720_1_jlm4tx.png',
-		],
+		id: 4,
+		name: 'Ian Pilcher ',
 	},
 	{
-		name: 'New York Red Bulls',
-		image: [
-			'https://images.mlssoccer.com/image/upload/t_q-best/v1614970744/assets/logos/399-ny-red-bulls-logo_o6xw9r.png',
-		],
+		id: 5,
+		name: 'Paddy McNair ',
 	},
 	{
-		name: 'San Jose Earthquakes',
-		image: [
-			'https://images.mlssoccer.com/image/upload/t_q-best/v1620997962/assets/logos/SJ-Logo-480px.png',
-		],
+		id: 6,
+		name: 'Andrés Reyes ',
 	},
 	{
-		name: 'Crown Legacy Football Club',
-		image: [
-			'https://images.mlssoccer.com/image/upload/t_q-best/v1677077684/assets/mnp/logos/clubs/CLT2-Club_Logo-Full_Color_msnssi.png',
-		],
-	},
-];
-
-const data: Player[] = [
-	{
-		id: '326860c3',
-		name: 'CJ Dos Santos',
-		photoUrl:
-			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls-mia/nrvfhks8mv8yicve8lru.png',
-		surveryValues: {
-			culture: 1,
-			performance: 4,
-		},
-		position: 'Goalkeeper',
-		team: teams[0],
-		status: {
-			label: 'Loaned Out',
-			variant: 'completed',
-		},
+		id: 7,
+		name: 'Christopher McVey ',
 	},
 	{
-		id: '326860c4',
-		name: 'Pablo Sisniega',
-		photoUrl:
-			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/prd-league/cnmcqtkah3yyrib2ixxf.png',
-		surveryValues: {
-			culture: 2,
-			performance: 5,
-		},
-		team: teams[teams.length - 1],
-		position: 'Goalkeeper',
-		status: {
-			label: 'Loaned Out',
-			variant: 'completed',
-		},
+		id: 8,
+		name: 'Franco Negri ',
 	},
 	{
-		id: '326860c5',
-		name: 'Jacob Jackson',
-		photoUrl:
-			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls/kx2x0zzi0avkhuvma4dw.png',
-		surveryValues: {
-			culture: 3,
-			performance: 6,
-		},
-		position: 'Goalkeeper',
-		team: teams[teams.length - 2],
-		status: {
-			label: 'Signed',
-			variant: 'pending',
-		},
+		id: 9,
+		name: 'Hamady Diop ',
 	},
 	{
-		id: '326860c6',
-		name: 'Andres Reyes',
-		photoUrl:
-			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls/udh0vvgplxjwenyyc44k.png',
-		surveryValues: {
-			culture: 4,
-			performance: 5,
-		},
-		team: teams[teams.length - 3],
-		position: 'Defender',
-		status: {
-			label: 'Signed',
-			variant: 'pending',
-		},
+		id: 10,
+		name: 'Willy Kumado ',
 	},
 	{
-		id: '326860c7',
-		name: 'Paddy McNair',
-		photoUrl:
-			'https://www.mlssoccer.com/assets/images/Fallback-Headshot.png',
-		surveryValues: {
-			culture: 5,
-			performance: 4,
-		},
-		team: teams[teams.length - 4],
-		position: 'Defender',
-		status: {
-			label: 'Signed',
-			variant: 'pending',
-		},
+		id: 11,
+		name: 'Jeppe Tverskov ',
 	},
 	{
-		id: '326860c8',
-		name: 'Ian Pilcher',
-		photoUrl:
-			'https://www.mlssoccer.com/assets/images/Fallback-Headshot.png',
-		surveryValues: {
-			culture: 6,
-			performance: 3,
-		},
-		team: teams[teams.length - 5],
-		position: 'Defender',
-		status: {
-			label: 'Signed',
-			variant: 'pending',
-		},
+		id: 12,
+		name: 'Aníbal Godoy ',
 	},
 	{
-		id: '326860c9',
-		name: 'Jasper Löffelsend',
-		photoUrl:
-			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls/bivn1gbui0rkhlebp5ek.png',
-		surveryValues: {
-			culture: 5,
-			performance: 2,
-		},
-		team: teams[teams.length - 6],
-		position: 'Midfielder',
-		status: {
-			label: 'Supplemental Slots 25-28',
-			variant: 'pending',
-		},
+		id: 13,
+		name: 'Manu Duah ',
 	},
 	{
-		id: '326860c10',
-		name: 'Hamady Diop',
-		photoUrl:
-			'https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop_2x/f_png/mls/rkqefxvqdcvhehdkr7gm.png',
-		surveryValues: {
-			culture: 4,
-			performance: 1,
-		},
-		team: teams[1],
-		position: 'Defender',
-		status: {
-			label: 'Loaned Out',
-			variant: 'pending',
-		},
+		id: 14,
+		name: 'Luca de la Torre ',
+	},
+	{
+		id: 15,
+		name: 'Heine Gikling Bruseth ',
+	},
+	{
+		id: 16,
+		name: 'Jasper Löffelsend ',
+	},
+	{
+		id: 17,
+		name: 'Alejandro Alvarado ',
+	},
+	{
+		id: 18,
+		name: 'Emmanuel Boateng ',
+	},
+	{
+		id: 19,
+		name: 'Onni Valakari ',
+	},
+	{
+		id: 20,
+		name: 'Hirving Lozano ',
+	},
+	{
+		id: 21,
+		name: 'Alex Mighten ',
+	},
+	{
+		id: 22,
+		name: 'Anders Dreyer ',
+	},
+	{
+		id: 23,
+		name: 'Marcus Ingvartsen ',
+	},
+	{
+		id: 24,
+		name: 'Tomás Ángel ',
+	},
+	{
+		id: 25,
+		name: 'Anisse Saidi ',
 	},
 ];
 
 export const getPlayers = async (): Promise<Player[]> => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
-			if (!!data) {
-				resolve(data);
-			} else {
-				reject([]);
-			}
-		}, 1000);
-	});
-};
-
-export const getTeams = async (): Promise<Team[]> => {
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			if (!!data) {
-				resolve(teams);
+			if (!!players) {
+				resolve(players);
 			} else {
 				reject([]);
 			}
