@@ -35,7 +35,7 @@ async function HomePage() {
 	const startOfTomorrow = startOfDay(addDays(new Date(), 1));
 
 	// Assemble the SQL statement
-	const statement = `select * from public.survey_values where submission_datetime > to_timestamp(${startOfToday.getTime()} / 1000.0) and submission_datetime < to_timestamp(${startOfTomorrow.getTime()} / 1000.0) order by player;`;
+	const statement = `select * from public.survey_values where submission_datetime > to_timestamp(${startOfToday.getTime()} / 1000.0) and submission_datetime < to_timestamp(${startOfTomorrow.getTime()} / 1000.0) and user_id = ${user.value} order by player;`;
 
 	// Get the rows from the database
 	const { rowCount } = await pool.query<SurveyRow>(statement);
