@@ -9,8 +9,8 @@ import Image from 'next/image';
 import { pool } from '@/lib/pg';
 import { createSurveyValueRow, SurveyRow } from '@/lib/functions';
 
-export default async function Page() {
-	const { rows } = await pool.query<SurveyRow>('select * from public.survery_values order by player;');
+async function HomePage() {
+	const { rows } = await pool.query<SurveyRow>('select * from public.survey_values order by player;');
 
 	if (!rows.length) {
 		await Promise.all(
@@ -49,14 +49,8 @@ export default async function Page() {
 						className='space-y-3'
 					>
 						<div className='flex items-center gap-3'>
-							{/* <Avatar.Root size='40'>
-								<Avatar.Image src={player.photoUrl} />
-							</Avatar.Root> */}
-
 							<div className='flex flex-col gap-0.5'>
 								<h2 className='text-label-md text-text-strong-950 dark:text-white'>{player.player}</h2>
-
-								{/* <p className='text-paragraph-xs text-text-sub-600'>{player.}</p> */}
 							</div>
 						</div>
 
@@ -96,3 +90,5 @@ export default async function Page() {
 		</main>
 	);
 }
+
+export default HomePage;

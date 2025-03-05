@@ -31,28 +31,26 @@ export const updateSurveryValueRow = async (id: number, update: SurveyRowUpdate)
 	const entries = Object.entries(update);
 	const sqlStatements = entries.map(([key, value]) => `${key} = ${value}`);
 
-	await pool.query(`UPDATE public.survery_values SET ${sqlStatements.toString()} WHERE id = ${id};`);
+	await pool.query(`UPDATE public.survey_values SET ${sqlStatements.toString()} WHERE id = ${id};`);
 	revalidatePath('/');
 };
 
 export const createSurveyValueRow = async (insertNewValue: SurveyRowInsert) => {
 	const values = Object.values(insertNewValue).map((v) => (typeof v === 'string' ? `'${v}'` : v));
 
-	const statement = `INSERT INTO public.survery_values VALUES (${values.join(', ').toString()});`;
-
-	console.log(statement);
+	const statement = `INSERT INTO public.survey_values (submission_datetime, user_name, player) VALUES (${values
+		.join(', ')
+		.toString()});`;
 
 	await pool.query(statement);
-
-	revalidatePath('/');
 };
 
 export const deleteSurveryValueRow = async (id: number) => {
-	await pool.query(`DELETE FROM public.survery_values WHERE id = ${id};`);
+	await pool.query(`DELETE FROM public.survey_values WHERE id = ${id};`);
 	revalidatePath('/');
 };
 
 export const getSurveryValues = async (date: string) => {
-	await pool.query(`SELECT * from public.survery_values WHERE submission_datetime > ${date};`);
+	await pool.query(`SELECT * from public.survey_values WHERE submission_datetime > ${date};`);
 	revalidatePath('/');
 };

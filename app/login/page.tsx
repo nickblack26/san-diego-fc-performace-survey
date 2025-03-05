@@ -1,13 +1,12 @@
 import React from 'react';
 
 import * as FancyButton from '@/components/ui/fancy-button';
-import * as LinkButton from '@/components/ui/link-button';
 import Image from 'next/image';
 import { Label } from '@/components/ui/dropdown';
 import { Input } from '@/components/ui/input';
 import { redirect } from 'next/navigation';
 
-export function LoginPage() {
+function LoginPage() {
 	const action = async () => {
 		'use server';
 		redirect('/');
@@ -29,13 +28,9 @@ export function LoginPage() {
 				/>
 
 				<div className='text-center w-full'>
-					<div className='text-title-h6 text-text-strong-950'>
-						Welcome back
-					</div>
+					<div className='text-title-h6 text-text-strong-950'>Welcome back</div>
 
-					<div className='text-paragraph-sm text-text-sub-600'>
-						Please enter your details to login.
-					</div>
+					<div className='text-paragraph-sm text-text-sub-600'>Please enter your details to login.</div>
 				</div>
 
 				<div className='flex flex-col w-full gap-3 flex-1'>
@@ -66,16 +61,6 @@ export function LoginPage() {
 				>
 					Login
 				</FancyButton.Root>
-
-				<div className='flex justify-center gap-1 text-paragraph-sm text-text-sub-600'>
-					Don’t have an account?
-					<LinkButton.Root
-						variant='black'
-						size='medium'
-					>
-						Register
-					</LinkButton.Root>
-				</div>
 			</div>
 		</form>
 	);
