@@ -2,10 +2,15 @@
 import { revalidatePath } from 'next/cache';
 import { pool } from './pg';
 
+export type User = {
+	id: number;
+	email: string;
+};
+
 export type SurveyRow = {
 	id: number;
-	submission_datetime: string;
-	user_name: string;
+	submission_datetime: Date;
+	user_id: number;
 	player: string;
 	performance_rating: number;
 	culture_rating: number;
@@ -13,15 +18,14 @@ export type SurveyRow = {
 
 export type SurveyRowUpdate = {
 	submission_datetime?: string;
-	user_name?: string;
+	user_id?: number;
 	player?: string;
 	performance_rating?: number;
 	culture_rating?: number;
 };
 
 export type SurveyRowInsert = {
-	submission_datetime: string;
-	user_name?: string;
+	user_id?: number;
 	player?: string;
 	performance_rating?: number;
 	culture_rating?: number;
@@ -38,11 +42,13 @@ export const updateSurveryValueRow = async (id: number, update: SurveyRowUpdate)
 export const createSurveyValueRow = async (insertNewValue: SurveyRowInsert) => {
 	const values = Object.values(insertNewValue).map((v) => (typeof v === 'string' ? `'${v}'` : v));
 
-	const statement = `INSERT INTO public.survey_values (submission_datetime, user_name, player) VALUES (${values
-		.join(', ')
-		.toString()});`;
+	const statement = `INSERT INTO public.survey_values (user_id, player) VALUES (${values.join(', ').toString()});`;
 
 	await pool.query(statement);
+};
+
+export const createSurveryValueRows = async (insertValues: SurveyRowInsert[]) => {
+	return await Promise.all(insertValues.map((insertValue) => createSurveyValueRow(insertValue)));
 };
 
 export const deleteSurveryValueRow = async (id: number) => {

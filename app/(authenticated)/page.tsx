@@ -1,28 +1,57 @@
 import * as React from 'react';
+import { addDays, startOfDay } from 'date-fns';
+
+import Image from 'next/image';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+
 import { players } from '@/utils/read';
+import { cultureHelperText, performanceHelperText } from '@/utils/text';
+
 import SuveryDropdown from '@/app/survery-dropdown';
+
 import { Label } from '@/components/ui/dropdown';
 import { DataTable } from '@/components/ui/data-table';
 import columns from '@/components/columns/players';
-import { cultureHelperText, performanceHelperText } from '@/utils/text';
-import Image from 'next/image';
+
 import { pool } from '@/lib/pg';
-import { createSurveyValueRow, SurveyRow } from '@/lib/functions';
+import { createSurveryValueRows, SurveyRow } from '@/lib/functions';
+
+export const dynamic = 'force-dynamic';
 
 async function HomePage() {
-	const { rows } = await pool.query<SurveyRow>('select * from public.survey_values order by player;');
+	const cookieStore = await cookies();
 
-	if (!rows.length) {
-		await Promise.all(
-			players.map((p) =>
-				createSurveyValueRow({
-					submission_datetime: new Date().toISOString(),
-					user_name: 'admin',
-					player: p.name,
-				})
-			)
+	// Get user cookie
+	const user = cookieStore.get('user');
+
+	// If no user cookie, redirect to login
+	if (!user) redirect('/login');
+
+	// Create a timestamp for the start of the day
+	const startOfToday = startOfDay(new Date());
+
+	// Create a timestamp for the start of the day
+	const startOfTomorrow = startOfDay(addDays(new Date(), 1));
+
+	// Assemble the SQL statement
+	const statement = `select * from public.survey_values where submission_datetime > to_timestamp(${startOfToday.getTime()} / 1000.0) and submission_datetime < to_timestamp(${startOfTomorrow.getTime()} / 1000.0) order by player;`;
+
+	// Get the rows from the database
+	const { rowCount } = await pool.query<SurveyRow>(statement);
+
+	// If no rows, create a new row for each player
+	if (!rowCount || rowCount === 0) {
+		// Create a new row for each player
+		await createSurveryValueRows(
+			players.map((p) => ({
+				user_id: Number(user.value),
+				player: p.name,
+			}))
 		);
 	}
+
+	const { rows } = await pool.query<SurveyRow>(statement);
 
 	return (
 		<main>
